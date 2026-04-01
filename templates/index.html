@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskFlow - Beautiful To-Do App</title>
+    <title>TaskFlow - Dashboard</title>
     <link rel="stylesheet" href="/static/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <div class="app-wrapper">
         <!-- Animated Background -->
@@ -20,19 +23,37 @@
         <div class="container">
             <!-- Header -->
             <header class="header">
-                <div class="logo-section">
-                    <div class="logo-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 11l3 3L22 4"/>
-                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
-                        </svg>
-                    </div>
-                    <div class="logo-text">
-                        <h1>TaskFlow</h1>
-                        <p class="tagline">Organize your day beautifully</p>
+                <div class="header-left">
+                    <div class="logo-section">
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 11l3 3L22 4" />
+                                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+                            </svg>
+                        </div>
+                        <div class="logo-text">
+                            <h1>TaskFlow</h1>
+                            <p class="tagline">Organize your day beautifully</p>
+                        </div>
                     </div>
                 </div>
-                <div class="header-date" id="current-date"></div>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        <span id="username-display">User</span>
+                    </div>
+                    <button onclick="logout()" class="btn-logout">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
+                            <polyline points="16 17 21 12 16 7" />
+                            <line x1="21" y1="12" x2="9" y2="12" />
+                        </svg>
+                        <span>Logout</span>
+                    </button>
+                </div>
             </header>
 
             <!-- Stats Cards -->
@@ -40,8 +61,8 @@
                 <div class="stat-card stat-total">
                     <div class="stat-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
                         </svg>
                     </div>
                     <div class="stat-info">
@@ -52,8 +73,8 @@
                 <div class="stat-card stat-pending">
                     <div class="stat-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
                         </svg>
                     </div>
                     <div class="stat-info">
@@ -64,8 +85,8 @@
                 <div class="stat-card stat-completed">
                     <div class="stat-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                            <path d="M22 4L12 14.01l-3-3"/>
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                            <path d="M22 4L12 14.01l-3-3" />
                         </svg>
                     </div>
                     <div class="stat-info">
@@ -89,17 +110,23 @@
             <!-- Add Task Form -->
             <div class="add-task-card">
                 <div class="add-task-header">
-                    <svg class="add-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+                    <svg class="add-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 8v8M8 12h8" />
+                    </svg>
                     <h2>Create New Task</h2>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="title-input" placeholder="What's on your mind today?" maxlength="200" autocomplete="off">
+                    <input type="text" id="title-input" placeholder="What's on your mind today?" maxlength="200"
+                        autocomplete="off">
                     <textarea id="description-input" placeholder="Add more details... (optional)" rows="2"></textarea>
                 </div>
                 <div class="form-options">
                     <div class="option-group">
                         <label>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
                             Priority
                         </label>
                         <select id="priority-select">
@@ -110,14 +137,19 @@
                     </div>
                     <div class="option-group">
                         <label>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
                             Due Date
                         </label>
                         <input type="date" id="due-date-input">
                     </div>
                     <button onclick="addTodo()" class="btn-add">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <path d="M12 5v14M5 12h14"/>
+                            <path d="M12 5v14M5 12h14" />
                         </svg>
                         <span>Add Task</span>
                     </button>
@@ -128,26 +160,39 @@
             <div class="controls-bar">
                 <div class="filter-tabs">
                     <button class="filter-btn active" data-filter="all">
-                        <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                        <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7" rx="1" />
+                            <rect x="14" y="3" width="7" height="7" rx="1" />
+                            <rect x="3" y="14" width="7" height="7" rx="1" />
+                            <rect x="14" y="14" width="7" height="7" rx="1" />
+                        </svg>
                         <span>All</span>
                     </button>
                     <button class="filter-btn" data-filter="pending">
-                        <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg>
                         <span>Pending</span>
                     </button>
                     <button class="filter-btn" data-filter="completed">
-                        <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                        <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                            <path d="M22 4L12 14.01l-3-3" />
+                        </svg>
                         <span>Done</span>
                     </button>
                     <button class="filter-btn" data-filter="high">
-                        <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
                         <span>Priority</span>
                     </button>
                 </div>
                 <div class="search-wrapper">
                     <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="M21 21l-4.35-4.35"/>
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="M21 21l-4.35-4.35" />
                     </svg>
                     <input type="text" id="search-input" placeholder="Search tasks...">
                 </div>
@@ -161,9 +206,9 @@
                     <div class="empty-illustration">
                         <div class="empty-circle">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
-                                <rect x="9" y="3" width="6" height="4" rx="1"/>
-                                <path d="M9 12h6M9 16h6"/>
+                                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
+                                <rect x="9" y="3" width="6" height="4" rx="1" />
+                                <path d="M9 12h6M9 16h6" />
                             </svg>
                         </div>
                         <div class="empty-dots">
@@ -178,7 +223,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>Made with ❤️ for productivity enthusiasts</p>
+            <p>Made with ❤️ Bavith L Suvarna</p>
         </footer>
     </div>
 
@@ -189,7 +234,7 @@
                 <h2>Edit Task</h2>
                 <button onclick="closeModal()" class="modal-close">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 6L6 18M6 6l12 12"/>
+                        <path d="M18 6L6 18M6 6l12 12" />
                     </svg>
                 </button>
             </div>
@@ -201,7 +246,9 @@
                 <div class="form-row">
                     <div class="option-group">
                         <label>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                            </svg>
                             Priority
                         </label>
                         <select id="edit-priority">
@@ -212,7 +259,12 @@
                     </div>
                     <div class="option-group">
                         <label>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
                             Due Date
                         </label>
                         <input type="date" id="edit-due-date">
@@ -228,4 +280,5 @@
 
     <script src="/static/app.js"></script>
 </body>
+
 </html>

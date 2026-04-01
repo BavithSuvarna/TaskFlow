@@ -2,6 +2,38 @@ let currentFilter = 'all';
 let searchQuery = '';
 let editingTodoId = null;
 
+// Check authentication on load
+document.addEventListener('DOMContentLoaded', async () => {
+    await checkAuth();
+    loadTodos();
+    setupEventListeners();
+});
+
+async function checkAuth() {
+    try {
+        const response = await fetch('/api/user');
+        const data = await response.json();
+
+        if (!data.authenticated) {
+            window.location.href = '/login';
+            return;
+        }
+
+        document.getElementById('username-display').textContent = data.user.username;
+    } catch (error) {
+        window.location.href = '/login';
+    }
+}
+
+async function logout() {
+    try {
+        await fetch('/api/logout', { method: 'POST' });
+        window.location.href = '/login';
+    } catch (error) {
+        console.error('Logout failed:', error);
+    }
+}
+
 // API functions
 async function fetchTodos() {
     const response = await fetch('/api/todos');
@@ -282,11 +314,7 @@ function setCurrentDate() {
     document.getElementById('current-date').textContent = today;
 }
 
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    setCurrentDate();
-    loadTodos();
-
+function setupEventListeners() {
     // Filter buttons
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -323,4 +351,4 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
-});
+}
