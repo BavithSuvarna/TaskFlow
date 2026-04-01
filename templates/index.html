@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Beautiful To-Do App</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Animated Background -->
+        <div class="bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+
+        <div class="container">
+            <!-- Header -->
+            <header class="header">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <h1>TaskFlow</h1>
+                        <p class="tagline">Organize your day beautifully</p>
+                    </div>
+                </div>
+                <div class="header-date" id="current-date"></div>
+            </header>
+
+            <!-- Stats Cards -->
+            <div class="stats-container">
+                <div class="stat-card stat-total">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="total-count">0</span>
+                        <span class="stat-label">Total Tasks</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-pending">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="pending-count">0</span>
+                        <span class="stat-label">In Progress</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-completed">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                            <path d="M22 4L12 14.01l-3-3"/>
+                        </svg>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="completed-count">0</span>
+                        <span class="stat-label">Completed</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <span>Today's Progress</span>
+                    <span id="progress-percent">0%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Add Task Form -->
+            <div class="add-task-card">
+                <div class="add-task-header">
+                    <h2>✨ Create New Task</h2>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="title-input" placeholder="What's on your mind today?" maxlength="200" autocomplete="off">
+                    <textarea id="description-input" placeholder="Add more details... (optional)" rows="2"></textarea>
+                </div>
+                <div class="form-options">
+                    <div class="option-group">
+                        <label>Priority</label>
+                        <select id="priority-select">
+                            <option value="low">🟢 Low</option>
+                            <option value="normal" selected>🟡 Normal</option>
+                            <option value="high">🔴 High</option>
+                        </select>
+                    </div>
+                    <div class="option-group">
+                        <label>Due Date</label>
+                        <input type="date" id="due-date-input">
+                    </div>
+                    <button onclick="addTodo()" class="btn-add">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                        <span>Add Task</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filters & Search -->
+            <div class="controls-bar">
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-filter="all">
+                        <span class="filter-icon">📋</span>
+                        <span>All</span>
+                    </button>
+                    <button class="filter-btn" data-filter="pending">
+                        <span class="filter-icon">⏳</span>
+                        <span>Pending</span>
+                    </button>
+                    <button class="filter-btn" data-filter="completed">
+                        <span class="filter-icon">✅</span>
+                        <span>Done</span>
+                    </button>
+                    <button class="filter-btn" data-filter="high">
+                        <span class="filter-icon">🔥</span>
+                        <span>Priority</span>
+                    </button>
+                </div>
+                <div class="search-wrapper">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                    <input type="text" id="search-input" placeholder="Search tasks...">
+                </div>
+            </div>
+
+            <!-- Task List -->
+            <div class="tasks-section">
+                <div class="todo-list" id="todo-list"></div>
+
+                <div class="empty-state" id="empty-state">
+                    <div class="empty-illustration">
+                        <div class="empty-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+                                <rect x="9" y="3" width="6" height="4" rx="1"/>
+                                <path d="M9 12h6M9 16h6"/>
+                            </svg>
+                        </div>
+                        <div class="empty-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <h3>No tasks yet</h3>
+                    <p>Start by adding your first task above!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with ❤️ for productivity enthusiasts</p>
+        </footer>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal-overlay" id="edit-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>Edit Task</h2>
+                <button onclick="closeModal()" class="modal-close">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" id="edit-title" placeholder="Task title">
+                    <textarea id="edit-description" placeholder="Description" rows="3"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="option-group">
+                        <label>Priority</label>
+                        <select id="edit-priority">
+                            <option value="low">🟢 Low</option>
+                            <option value="normal">🟡 Normal</option>
+                            <option value="high">🔴 High</option>
+                        </select>
+                    </div>
+                    <div class="option-group">
+                        <label>Due Date</label>
+                        <input type="date" id="edit-due-date">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal()" class="btn-cancel">Cancel</button>
+                <button onclick="saveEdit()" class="btn-save">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
