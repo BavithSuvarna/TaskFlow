@@ -33,6 +33,7 @@ env/
 
 # Flask instance folder (contains databases and environment variables)
 instance/
+DEPLOYMENT.md
 
 # IDEs
 .vscode/
