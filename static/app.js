@@ -91,7 +91,7 @@ function createTodoHTML(todo, index) {
                     ${dueDateHTML}
                     <span class="created-date">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                        ${todo.created_at}
+                        ${formatDate(todo.created_at.split(' ')[0])}
                     </span>
                 </div>
             </div>
@@ -107,15 +107,22 @@ function createTodoHTML(todo, index) {
     `;
 }
 
+function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    const options = { month: 'short', day: 'numeric', year: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+}
+
 function formatDueDate(dateStr) {
     const date = new Date(dateStr);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const isOverdue = date < today && !isToday(date);
+    const formattedDate = formatDate(dateStr);
 
     return `<span class="due-date ${isOverdue ? 'overdue' : ''}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        ${dateStr}
+        ${formattedDate}
     </span>`;
 }
 
