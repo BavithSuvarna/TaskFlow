@@ -89,7 +89,8 @@
             <!-- Add Task Form -->
             <div class="add-task-card">
                 <div class="add-task-header">
-                    <h2>✨ Create New Task</h2>
+                    <svg class="add-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+                    <h2>Create New Task</h2>
                 </div>
                 <div class="form-group">
                     <input type="text" id="title-input" placeholder="What's on your mind today?" maxlength="200" autocomplete="off">
@@ -97,15 +98,21 @@
                 </div>
                 <div class="form-options">
                     <div class="option-group">
-                        <label>Priority</label>
+                        <label>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            Priority
+                        </label>
                         <select id="priority-select">
-                            <option value="low">🟢 Low</option>
-                            <option value="normal" selected>🟡 Normal</option>
-                            <option value="high">🔴 High</option>
+                            <option value="low">Low</option>
+                            <option value="normal" selected>Normal</option>
+                            <option value="high">High</option>
                         </select>
                     </div>
                     <div class="option-group">
-                        <label>Due Date</label>
+                        <label>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            Due Date
+                        </label>
                         <input type="date" id="due-date-input">
                     </div>
                     <button onclick="addTodo()" class="btn-add">
@@ -121,19 +128,19 @@
             <div class="controls-bar">
                 <div class="filter-tabs">
                     <button class="filter-btn active" data-filter="all">
-                        <span class="filter-icon">📋</span>
+                        <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                         <span>All</span>
                     </button>
                     <button class="filter-btn" data-filter="pending">
-                        <span class="filter-icon">⏳</span>
+                        <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                         <span>Pending</span>
                     </button>
                     <button class="filter-btn" data-filter="completed">
-                        <span class="filter-icon">✅</span>
+                        <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
                         <span>Done</span>
                     </button>
                     <button class="filter-btn" data-filter="high">
-                        <span class="filter-icon">🔥</span>
+                        <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                         <span>Priority</span>
                     </button>
                 </div>
@@ -193,15 +200,21 @@
                 </div>
                 <div class="form-row">
                     <div class="option-group">
-                        <label>Priority</label>
+                        <label>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            Priority
+                        </label>
                         <select id="edit-priority">
-                            <option value="low">🟢 Low</option>
-                            <option value="normal">🟡 Normal</option>
-                            <option value="high">🔴 High</option>
+                            <option value="low">Low</option>
+                            <option value="normal">Normal</option>
+                            <option value="high">High</option>
                         </select>
                     </div>
                     <div class="option-group">
-                        <label>Due Date</label>
+                        <label>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            Due Date
+                        </label>
                         <input type="date" id="edit-due-date">
                     </div>
                 </div>
