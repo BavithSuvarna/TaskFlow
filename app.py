@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, jsonify, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -5,7 +6,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todos.db'
+
+# Define the absolute path for the database so it works anywhere
+basedir = os.path.abspath(os.path.dirname(__file__))
+instance_path = os.path.join(basedir, 'instance')
+os.makedirs(instance_path, exist_ok=True)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(instance_path, 'todos.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your-secret-key-change-in-production'
 
